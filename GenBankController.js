@@ -38,7 +38,7 @@ function displayFeatures(features) {
         checkbox.type = "checkbox";
         checkbox.name = features[i].feature;
         checkbox.value = features[i].feature;
-        checkbox.id = i;
+        checkbox.id = "checkbox"+i;
 		checkbox.start = features[i].location[0].start;
 		checkbox.end = features[i].location[0].end;
         var label = document.createElement('label')
