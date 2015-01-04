@@ -44,7 +44,7 @@ function displayFeatures(features) {
         checkbox.start = features[i].location[0].start;
         checkbox.end = features[i].location[0].end;
         checkbox.onchange = function(){
-            showSelectedFeatureDiv($(this).attr('id'));
+            showSelectedFeatureDiv($(this));
        };
         //};
         
