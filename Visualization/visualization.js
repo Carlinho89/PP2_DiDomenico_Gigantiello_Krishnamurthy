@@ -77,3 +77,43 @@ var j = i+1;
 sequenceLength = sequence.length;
 return rslt;
 }
+
+
+function addSpansForFeatures(sequence,features) {	
+	for (var i = 0; i < features.length; i++){
+		var location = features[i].location;		
+		var start = features[i].location[0].start-1;
+		var end = features[i].location[0].end-1;		
+		var tmp = sequence.substring(start,end);
+		console.log(start  + " " + end + " " + tmp);	
+		tmp = "<span id='" + features[i].feature + "" + i + "'>" + tmp + "</span>";
+		console.log(tmp);
+		if(start==0 && end==sequence.length-1) { sequence = tmp; } else {
+		sequence = sequence.substring(0,start) + tmp + sequence.substring(end,sequence.length-1); }
+	}
+	return sequence;
+}
+var checkedNum = 0;
+
+function showSelectedFeatureDiv(checkbox, features) {//feature, selectedID) {
+    
+    var checkboxIDs = [];
+    var feature = features[checkbox.attr('id')].feature;
+    
+    console.log("feature: " + feature);
+    
+    $(":checkbox:checked").each(function(index){
+        checkboxIDs.push($(this).attr('id'));
+    })
+    
+    if(checkboxIDs.indexOf(checkbox.attr('id')) > -1){ //checked
+        document.getElementById("selectedFeatureDiv").style.display = "block";
+        checkedNum ++;
+    }
+    else {//Unchecked
+        checkedNum --;
+        if (checkedNum == 0) {
+            document.getElementById("selectedFeatureDiv").style.display = "none";
+        }
+    }
+}
