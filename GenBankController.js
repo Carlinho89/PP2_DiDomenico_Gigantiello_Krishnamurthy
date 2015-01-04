@@ -48,8 +48,7 @@ function displayFeatures(features) {
         checkbox.onchange = function(){
             showSelectedFeatureDiv($(this), features);
         };
-        //};
-        
+    
         var label = document.createElement('label')
         label.display = "inline-block";
         label.htmlFor = "feature " + i;
