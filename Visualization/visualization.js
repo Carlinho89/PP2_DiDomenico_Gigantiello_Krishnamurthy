@@ -109,6 +109,8 @@ function showSelectedFeatureDiv(checkbox, features) {//feature, selectedID) {
     if(checkboxIDs.indexOf(checkbox.attr('id')) > -1){ //checked
         document.getElementById("selectedFeatureDiv").style.display = "block";
         checkedNum ++;
+        
+        add("button", document.getElementById("selectedFeatureDiv"));
     }
     else {//Unchecked
         checkedNum --;
@@ -116,4 +118,27 @@ function showSelectedFeatureDiv(checkbox, features) {//feature, selectedID) {
             document.getElementById("selectedFeatureDiv").style.display = "none";
         }
     }
+}
+
+function add(type, appendTo) {
+    //Create an input type dynamically.   
+    var element = document.createElement("input");
+    //Assign different attributes to the element. 
+    
+    element.onclick = function() { // Note this is a function
+         writeToFile("Hello", "World");
+    };
+    element.setAttribute('type','button');
+	element.setAttribute('name','Export Feature');
+	element.setAttribute('value','Export Feature');
+	
+	appendTo.appendChild(element);
+
+}
+
+function writeToFile(d1, d2){
+    var fso = new ActiveXObject("Scripting.FileSystemObject");
+    var fh = fso.OpenTextFile("data.txt", 8, false, 0);
+    fh.WriteLine(d1 + ',' + d2);
+    fh.Close();
 }
