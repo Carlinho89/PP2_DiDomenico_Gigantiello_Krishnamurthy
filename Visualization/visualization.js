@@ -89,15 +89,18 @@ function addSpansForFeatures(sequence,features) {
 }
 var checkedNum = 0;
 
-function showSelectedFeatureDiv(thisObj) {//feature, selectedID) {
+function showSelectedFeatureDiv(checkbox, features) {//feature, selectedID) {
     
     var checkboxIDs = [];
+    var feature = features[checkbox.attr('id')].feature;
+    
+    console.log("feature: " + feature);
     
     $(":checkbox:checked").each(function(index){
         checkboxIDs.push($(this).attr('id'));
     })
     
-    if(checkboxIDs.indexOf(thisObj.attr('id')) > -1){ //checked
+    if(checkboxIDs.indexOf(checkbox.attr('id')) > -1){ //checked
         document.getElementById("selectedFeatureDiv").style.display = "block";
         checkedNum ++;
     }
