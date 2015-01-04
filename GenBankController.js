@@ -38,13 +38,22 @@ function displayFeatures(features) {
         checkbox.type = "checkbox";
         checkbox.name = features[i].feature;
         checkbox.value = features[i].feature;
+        
         checkbox.id = i;
-		checkbox.start = features[i].location[0].start;
-		checkbox.end = features[i].location[0].end;
+        
+        checkbox.start = features[i].location[0].start;
+        checkbox.end = features[i].location[0].end;
+        checkbox.feature = features[i];
+        
+        checkbox.onchange = function(){
+            showSelectedFeatureDiv($(this), features);
+        };
+        //};
+        
         var label = document.createElement('label')
         label.display = "inline-block";
         label.htmlFor = "feature " + i;
-		var txt = features[i].feature + " (" + JSON.stringify(features[i].location) + ")";
+        var txt = features[i].feature + " (" + JSON.stringify(features[i].location) + ")";
         label.appendChild(document.createTextNode(txt));
 
         container.appendChild(checkbox);

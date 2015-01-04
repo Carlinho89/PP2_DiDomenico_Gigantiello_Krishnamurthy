@@ -87,3 +87,27 @@ function addSpansForFeatures(sequence,features) {
 	}
 	return sequence;
 }
+var checkedNum = 0;
+
+function showSelectedFeatureDiv(checkbox, features) {//feature, selectedID) {
+    
+    var checkboxIDs = [];
+    var feature = features[checkbox.attr('id')].feature;
+    
+    console.log("feature: " + feature);
+    
+    $(":checkbox:checked").each(function(index){
+        checkboxIDs.push($(this).attr('id'));
+    })
+    
+    if(checkboxIDs.indexOf(checkbox.attr('id')) > -1){ //checked
+        document.getElementById("selectedFeatureDiv").style.display = "block";
+        checkedNum ++;
+    }
+    else {//Unchecked
+        checkedNum --;
+        if (checkedNum == 0) {
+            document.getElementById("selectedFeatureDiv").style.display = "none";
+        }
+    }
+}
