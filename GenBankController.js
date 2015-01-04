@@ -1,5 +1,5 @@
 var jsonFile;
-
+var parsedContent;
 function parse(evt) {
     handleFileSelect(evt);
 }
@@ -8,15 +8,17 @@ function handleFileSelect(evt) {
         var files = evt.target.files,
             f = files[0],
             reader = new FileReader();
-            var parsedContent = reader.onload = function(e) {
+            parsedContent = reader.onload = function(e) {
             
             var parsedContent = parseGBF(e.target.result);  
             //console.log(JSON.stringify(parsedContent));
 
             document.getElementById('name').innerHTML = "Keywords :" + parsedContent.metadata.keywords;
             document.getElementById('features').innerHTML = "Features :" + JSON.stringify(parsedContent.features);
-            document.getElementById('sequence').innerHTML = "Sequence : <br>" + parsedContent.sequence;
-            
+			//parsedContent.sequence
+			//new seq2gff(parsedContent.sequence,document.getElementById('sequence'));
+            //document.getElementById('sequence').innerHTML = "Sequence : <br>" + addSpansForFeatures(parsedContent.sequence,parsedContent.features);
+            document.getElementById('sequence').innerHTML = "Sequence : <br>" + addSpans(parsedContent.sequence);
             displayFeatures(parsedContent.features);
             //displayFeatures(JSON.stringify(parsedContent.features));
         }
@@ -36,14 +38,14 @@ function displayFeatures(features) {
         checkbox.type = "checkbox";
         checkbox.name = features[i].feature;
         checkbox.value = features[i].feature;
-        checkbox.id = "feature " + i;
-
+        checkbox.id = i;
+		checkbox.start = features[i].location[0].start;
+		checkbox.end = features[i].location[0].end;
         var label = document.createElement('label')
         label.display = "inline-block";
         label.htmlFor = "feature " + i;
-        label.appendChild(document.createTextNode(features[i].feature));
-        
-        
+		var txt = features[i].feature + " (" + JSON.stringify(features[i].location) + ")";
+        label.appendChild(document.createTextNode(txt));
 
         container.appendChild(checkbox);
         container.appendChild(label);
