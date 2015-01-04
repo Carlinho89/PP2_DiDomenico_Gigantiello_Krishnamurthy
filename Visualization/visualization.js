@@ -89,7 +89,7 @@ function addSpansForFeatures(sequence,features) {
 }
 var checkedNum = 0;
 
-function showSelectedFeatureDiv(attrID) {//feature, selectedID) {
+function showSelectedFeatureDiv(thisObj) {//feature, selectedID) {
     
     var checkboxIDs = [];
     
@@ -97,7 +97,7 @@ function showSelectedFeatureDiv(attrID) {//feature, selectedID) {
         checkboxIDs.push($(this).attr('id'));
     })
     
-    if(checkboxIDs.indexOf(attrID) > -1){ //checked
+    if(checkboxIDs.indexOf(thisObj.attr('id')) > -1){ //checked
         document.getElementById("selectedFeatureDiv").style.display = "block";
         checkedNum ++;
     }
