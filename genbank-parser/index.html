@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js"></script>
+
+    <script src = "parser.js" ></script>
+	<script src="http://listjs.com/no-cdn/list.js"></script>
+    <script src = "../GenBankController.js"></script>
+	<script src = "../Visualization/visualization.js"></script>
+    <style>
+	#sequence {	
+	width:800px;
+	word-wrap: break-word;	
+	text-align:justify;
+	}
+	
+	.seperator { 
+		padding-left:6px;
+		font-size:6px;
+		width:130px;
+		text-align:center;
+		display:inline;
+	} 
+	.sequence-container {
+		width:500px;
+		overflow:auto;
+		background-color:black;
+		display:block;
+	}
+
+	.list {
+  font-family:sans-serif;
+  margin:0;
+  padding:20px 0 0;
+}
+.list > li {
+  display:block;
+  background-color: #eee;
+  padding:10px;
+  box-shadow: inset 0 1px 0 #fff;
+}
+.avatar {
+  max-width: 150px;
+}
+img {
+  max-width: 100%;
+}
+h3 {
+  font-size: 16px;
+  margin:0 0 0.3rem;
+  font-weight: normal;
+  font-weight:bold;
+}
+p {
+  margin:0;
+}
+
+input {
+  border:solid 1px #ccc;
+  border-radius: 5px;
+  padding:7px 14px;
+  margin-bottom:10px
+}
+input:focus {
+  outline:none;
+  border-color:#aaa;
+}
+
+</style>
+    
+	
+</head>
+<body>
+<h3>Genbank Parser</h3>
+<p>Developed for the course Protein Prediction held at the Technical University of Munich, for the winter semester 14-15</p>
+<input type="file" id="files" name="Input GBK" onchange="parse(event)"/>
+<p id="name"></p>
+<p id="features"></p>
+<div id="featureList"></div>
+<div id ="selectedFeatureDiv" style = "display:none;" class = "featureDiv"> 
+<ul id = "selectedFeatureList"> </ul>
+</div>
+
+<div id="sequence-container">
+<div style="display:inline;">
+<input type="button" value="Visualize" onclick="highlight()"/>
+<input type="button" value="Export" onclick="exportSelectedFeatures()"/>
+</div>
+<div id="sequence"></div>
+</div>
+</body>
+</html>
+

@@ -10,7 +10,7 @@ function handleFileSelect(evt) {
             reader = new FileReader();
             parsedContent = reader.onload = function(e) {
             
-            var parsedContent = parseGBF(e.target.result);  
+            parsedContent = parseGBF(e.target.result);  
             //console.log(JSON.stringify(parsedContent));
 
             document.getElementById('name').innerHTML = "Keywords :" + parsedContent.metadata.keywords;
@@ -40,17 +40,14 @@ function displayFeatures(features) {
         checkbox.value = features[i].feature;
         
         checkbox.id = i;
-		
-		checkbox.index= i;
         
-        checkbox.start = features[i].location[0].start;
+        checkbox.start = features[i]
         checkbox.end = features[i].location[0].end;
-        checkbox.feature = features[i];
-        
         checkbox.onchange = function(){
             showSelectedFeatureDiv($(this), features);
-        };
-    
+       };
+        //};
+        
         var label = document.createElement('label')
         label.display = "inline-block";
         label.htmlFor = "feature " + i;
