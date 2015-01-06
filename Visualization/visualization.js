@@ -3,57 +3,29 @@ function createChecklist(jsonFeatureList) {
 }
 
 
-colors =  d3.scale.category20b(); 
+var colors =  d3.scale.category20b(); 
+var sequenceLength;
 RandomColor = function() {   
-
-	var rand = Math.floor(Math.random()*20);
-	console.log(rand);
+	var rand = Math.floor(Math.random()*20);	
 	var color = colors(rand);	
     return color;
 }
-function seq2gff(seq,el){
-	
-	this.seq = seq.toUpperCase();
-	this.last = null; //save the last operation
-	this.outline = function(){ this.el.innerHTML = this.html();}; //pretty-print
-	this.clear = function(){ this.el.innerHTML = this.gff();}; //clear pretty-print
-	this.gff = function(){ //sequence in gff format
-          this.last = 'gff';
-             return this.seq.split(/(.{10})/gm).
-					filter(Boolean).
-					map( function(e,i,a){ var pos=(i*10)+1; 
-						return (!(i%6)?'\n'+'    '.slice(0,4-(''+pos).length)+(pos)+' '+e:e)}).join(' ')
-			}
-	this.html = function(){ //seq as html markup
-      this.last = 'html';
-			return  this.seq.split(/(.{10})/gm).
-					filter(Boolean).
-					map( function(e,i,a){ var pos=(i*10)+1; return (!(i%6)?'\n'+'    '.slice(0,4-(''+pos).length)+(pos)+' '+e:e).
-					replace(/(.{1})/g,'<b class="\$1">\$1</b>')}).join(' ')
-			}
-	//init and 'attach' if an element is provided
-	if("string" === typeof el){
-    el = document.querySelector(el)
-  }
-  if(el instanceof HTMLElement){
-     this.el = el
-     this.el.addEventListener('mouseover', (function(self){return function(ev){ if(self.last !== 'html' ) {self.outline();}}})(this), true);
-     //extending the native DOM Element's attributes - generally not recommended; serves a demonstrative cause of using Nodelists and forEach
-     this.el.seqViewer = this;
-     this.clear();
-	}
+
+function reset() {	
+	for(i=1;i<=sequenceLength;i++) {  document.getElementById("feature"+i).style.background = "white"; }
 }
 
 
 function highlight() {
+reset();
 var checkboxes = $('input:checkbox:checked');
   for(i=0;i<checkboxes.length;i++) {
-	var id = checkboxes[i].name + checkboxes[i].id;
-	var start = parseInt(checkboxes[i].start);
-	var end = parseInt(checkboxes[i].end);
+	//var id = checkboxes[i].name + checkboxes[i].id;	
+	var start = parseInt(checkboxes[i].start);	
+	var end = parseInt(checkboxes[i].end);	
 	var color = RandomColor();
-	for(i=start;i<=end;i++) {
-		document.getElementById(i).style.background = color;
+	for(j=start;j<=end;j++) {
+		document.getElementById("feature"+j).style.background = color;
 	}
   }
 }
@@ -66,27 +38,15 @@ var end = "</div>";
 var linesep = "<div class='line-seperator'></div>";
 for (var i = 0; i < sequence.length; i++){ 
 var j = i+1;
-	rslt = rslt + "<span id='"+j+"'>"+sequence[i]+"</span>";
+	rslt = rslt + "<span id=feature"+j+">"+sequence[i]+"</span>";
 	if(i%10==0 && i!=0) { rslt = rslt + sep;}
 	if(i%60==0 && i!=0) { rslt = rslt + linesep;} 
 }
+sequenceLength = sequence.length;
 return rslt;
 }
 
-function addSpansForFeatures(sequence,features) {	
-	for (var i = 0; i < features.length; i++){
-		var location = features[i].location;		
-		var start = features[i].location[0].start-1;
-		var end = features[i].location[0].end-1;		
-		var tmp = sequence.substring(start,end);
-		console.log(start  + " " + end + " " + tmp);	
-		tmp = "<span id='" + features[i].feature + "" + i + "'>" + tmp + "</span>";
-		console.log(tmp);
-		if(start==0 && end==sequence.length-1) { sequence = tmp; } else {
-		sequence = sequence.substring(0,start) + tmp + sequence.substring(end,sequence.length-1); }
-	}
-	return sequence;
-}
+
 var checkedNum = 0;
 
 function showSelectedFeatureDiv(checkbox, features) {//feature, selectedID) {
@@ -103,6 +63,8 @@ function showSelectedFeatureDiv(checkbox, features) {//feature, selectedID) {
     if(checkboxIDs.indexOf(checkbox.attr('id')) > -1){ //checked
         document.getElementById("selectedFeatureDiv").style.display = "block";
         checkedNum ++;
+        
+        add("button", document.getElementById("selectedFeatureDiv"));
     }
     else {//Unchecked
         checkedNum --;
@@ -110,4 +72,27 @@ function showSelectedFeatureDiv(checkbox, features) {//feature, selectedID) {
             document.getElementById("selectedFeatureDiv").style.display = "none";
         }
     }
+}
+
+function add(type, appendTo) {
+    //Create an input type dynamically.   
+    var element = document.createElement("input");
+    //Assign different attributes to the element. 
+    
+    element.onclick = function() { // Note this is a function
+         writeToFile("Hello", "World");
+    };
+    element.setAttribute('type','button');
+	element.setAttribute('name','Export Feature');
+	element.setAttribute('value','Export Feature');
+	
+	appendTo.appendChild(element);
+
+}
+
+function writeToFile(d1, d2){
+    var fso = new ActiveXObject("Scripting.FileSystemObject");
+    var fh = fso.OpenTextFile("data.txt", 8, false, 0);
+    fh.WriteLine(d1 + ',' + d2);
+    fh.Close();
 }
