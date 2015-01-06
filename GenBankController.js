@@ -39,7 +39,9 @@ function displayFeatures(features) {
         checkbox.name = features[i].feature;
         checkbox.value = features[i].feature;
         
-        checkbox.id = "checkbox"+i;
+        checkbox.id = i;
+		
+		checkbox.index= i;
         
         checkbox.start = features[i].location[0].start;
         checkbox.end = features[i].location[0].end;
