@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<title>Parsing and Visualization of Genbank Files</title>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
@@ -16,11 +18,28 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css" />
 		
     <style>
+	
+	.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+	
+	.block-legend { 
+		display:inline-block;
+		width:10px;
+		margin-right:6px;
+		height:10px;
+	}
 	label { padding:5px; } 
 	li { list-style:none;}
 	.cap { 
 		text-transform:capitalize;
 		
+	}
+	
+	#legend { 
+		font-size:16px;
 	}
 	#sequence {	
 	width:800px;
@@ -63,22 +82,26 @@
 
 
 <div class="row">
-<div class="col-md-1"><img width="196px" height="128px"  src="css/tum.jpg"/></div>
+<div class="col-md-1"><img width="196px" height="128px" class="vcenter" src="css/tum.jpg"/></div>
 <div class="col-md-7 col-md-offset-2">
 <div class="row">
 <div class="col-md-12">
 <h1 class="text-center" > TUM : Technical University of Munich </h1>
+<h2 class="text-center" > Chair Of Bio-Informatics </h2>
+<h3 class="text-center" > Protein Prediction 2 by Prof. Burkhard Rost (winter semester 14-15) </h3>
+
 </div>
 </div>
 
 <div class="row">
 <div class="text-center" class="col-md-12">
-<h3>Parsing and Visualization of Genbank Files</h3>
+
+
 </div>
 </div>
  
 </div>
-<div class="col-md-1"><img width="150px" height="150px" src="css/rost.png"/></div>
+<div class="col-md-1"><img class="vcenter" width="150px" height="150px" src="css/rost.png"/></div>
 </div>
 
 
@@ -89,15 +112,35 @@
 
 
 <div class="row">
-<div class="col-md-2"></div>
+<div class="col-md-12 text-center" >
+<h4>Project Name: Parsing and Visualization of Genbank Files</h4>
+</div>
+</div>
+<div class="row">
 
-<div class="col-md-2"></div>
+<div class="col-md-6">
+<h4><span class="label label-default">Developed By:</span></h4>
+<blockquote>  <br>
+Sai kiran Krishna murthy<br>
+Enrico Gigantiello <br>
+Carlo Di Domenico
+ </blockquote> 
+</div>
+
+<div class="col-md-6">
+<h4><span class="label label-default"> Mentored By:</span></h4>
+<blockquote> <br>
+Dr. Khalil El Mazouari 
+ </blockquote>
+</div>
+</div>
+
 </div>
 <div class="row">
 <div class="col-md-8">
 <div class="row">
 <div class="col-md-2"></div>
-<div class="col-md-8"><p>Developed for the course Protein Prediction held at the Technical University of Munich, for the winter semester 14-15</p></div>
+<div class="col-md-8"></div>
 
 <div class="col-md-2"></div>
 </div>
@@ -105,15 +148,9 @@
 </div>
 
 <div class="col-md-3 col-md-offset-1">
-<blockquote> Mentored By: <br>
-Dr. Khalil El Mazouari 
- </blockquote>
+
  
-<blockquote> Developed By: <br>
-Sai kiran Krishna murthy<br>
-Enrico Gigantiello <br>
-Carlo Di Domenico
- </blockquote> 
+
  
 </div>
  
@@ -171,7 +208,7 @@ Carlo Di Domenico
 </div>
 
 <div class="row">
-<div class="col-md-9 col-md-offset-1">
+<div class="col-md-9 ">
 <div class="col-md-12">
 <div class="panel panel-default">
   <div class="panel-heading">
@@ -184,7 +221,16 @@ Carlo Di Domenico
 </div>
 
 </div>
-<div class="col-md-2"></div>
+<div class="col-md-3">
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Legend:</h3>
+  </div>
+  <div class="panel-body">
+    <ul id="legend"></ul>
+  </div>
+</div></div>
 </div>
 
 </div>

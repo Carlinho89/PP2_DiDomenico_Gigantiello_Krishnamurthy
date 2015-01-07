@@ -14,29 +14,35 @@ RandomColor = function() {
 }
 
 function reset() {	
-	for(i=1;i<=sequenceLength;i++) {  document.getElementById("feature"+i).style.background = "white"; }
+	for(i=1;i<=sequenceLength;i++) {  document.getElementById("feature"+i).style.background = "white"; }	
+	$("#legend").empty();
 }
 
 
 function highlight() {
 reset();
+var lb;
 var checkboxes = $('input:checkbox:checked');
   for(i=0;i<checkboxes.length;i++) {
 	//var id = checkboxes[i].name + checkboxes[i].id;	
 	if(checkboxes[i].hasMultiple) { 
 		var location = checkboxes[i].location;
-		for(i=0;i<location.length;i++) { 
-			var start = parseInt(location[i].start);	
-			var end = parseInt(location[i].end);	
+		for(j=0;j<location.length;j++) { 
+			var start = parseInt(location[j].start);	
+			var end = parseInt(location[j].end);	
 			var color = RandomColor();
-			for(j=start;j<=end;j++) {
-				document.getElementById("feature"+j).style.background = color;
+			lb="<span class='block-legend' style='background-color:"+color+"'></span>";		
+			addToList("legend",lb+checkboxes[i].name + "("+start+".."+end+")");
+			for(k=start;k<=end;k++) {
+				document.getElementById("feature"+k).style.background = color;
 			}
 		}
 	} else {
 		var start = parseInt(checkboxes[i].start);	
 		var end = parseInt(checkboxes[i].end);	
 		var color = RandomColor();
+		lb="<span class='block-legend' style='background-color:"+color+"'></span>";
+		addToList("legend",lb+checkboxes[i].name + "("+start+".."+end+")");
 		for(j=start;j<=end;j++) {
 			document.getElementById("feature"+j).style.background = color;
 		}
@@ -162,4 +168,12 @@ function showSelectedFeatureDiv(thisObj, features) {//feature, selectedID) {
     }
 
 	//}
+}
+
+
+function addToList(id,txt) {				
+			var li = document.createElement("li");
+			li.innerHTML = txt;
+			//li.appendChild(document.createTextNode(txt));
+			$(li).appendTo("#"+id);
 }
