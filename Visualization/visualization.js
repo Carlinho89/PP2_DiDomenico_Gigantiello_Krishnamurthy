@@ -48,16 +48,18 @@ var checkboxes = $('input:checkbox:checked');
 
 function addSpans(sequence) {
 var rslt  = "";
+var count_div ="<div class='row'><div class='col-md-1'>";
+var start_inn = "<div class='col-md-11'>";
 var start_row = "<div class='row'>";
 var start_div = "<div class='col-md-2'>";
 var sep  = "<div class='seperator'></div>";
 var end = "</div>";
 var linesep = "<div class='line-seperator'></div>";
-rslt = start_row + start_div;
+rslt = count_div + "1" +end+start_inn + start_row + start_div;
 for (var i = 0; i < sequence.length; i++){ 
 	var j = i+1;
 	rslt = rslt + "<span id=feature"+j+">"+sequence[i]+"</span>";
-	if(i%60==0 && i!=0) { rslt = rslt + end+ end + start_row + start_div; } else	if(i%10==0 && i!=0) { rslt = rslt + end + start_div ;}
+	if(i%60==0 && i!=0) { rslt = rslt + end+ end + end+ end +count_div + j +end+start_inn + start_row + start_div; } else	if(i%10==0 && i!=0) { rslt = rslt + end + start_div ;}
 	
 }
 sequenceLength = sequence.length;
