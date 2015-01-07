@@ -1,7 +1,7 @@
 function createChecklist(jsonFeatureList) {
     
 }
-
+var checkboxIDs = [];
 
 var colors =  d3.scale.category20b(); 
 var sequenceLength;
@@ -49,30 +49,6 @@ return rslt;
 
 var checkedNum = 0;
 
-function showSelectedFeatureDiv(checkbox, features) {//feature, selectedID) {
-    
-    var checkboxIDs = [];
-    var feature = features[checkbox.attr('id')].feature;
-    
-    console.log("feature: " + feature);
-    
-    $(":checkbox:checked").each(function(index){
-        checkboxIDs.push($(this).attr('id'));
-    })
-    
-    if(checkboxIDs.indexOf(checkbox.attr('id')) > -1){ //checked
-        document.getElementById("selectedFeatureDiv").style.display = "block";
-        checkedNum ++;
-        
-        add("button", document.getElementById("selectedFeatureDiv"));
-    }
-    else {//Unchecked
-        checkedNum --;
-        if (checkedNum == 0) {
-            document.getElementById("selectedFeatureDiv").style.display = "none";
-        }
-    }
-}
 
 function add(type, appendTo) {
     //Create an input type dynamically.   
@@ -96,3 +72,119 @@ function writeToFile(d1, d2){
     fh.WriteLine(d1 + ',' + d2);
     fh.Close();
 }
+
+
+function showSelectedFeatureDiv(thisObj, features) {//feature, selectedID) {
+    
+    
+  var index = thisObj.attr('id');
+
+	var selectedFeature = features[index];
+
+	var selectedFeatureDiv = document.getElementById("selectedFeatureDiv");
+	
+        	
+  checkboxIDs = [];	
+	
+    $(":checkbox:checked").each(function(index){
+        checkboxIDs.push($(this).attr('id'));
+    })
+	console.log(checkboxIDs);
+   
+   // for (selectedID in checkboxIDs) {
+     //    console.log(selectedID);
+
+	var ul = $("#selectedFeatureList");
+	ul.empty();
+    for (var i = checkboxIDs.length - 1; i >= 0; i--) {
+    	console.log(checkboxIDs[i]);
+    	
+    	var li = $(document.createElement('li'));
+    	var listElementContent = "";
+
+        $.each(features[checkboxIDs[i]], function(key, value){
+			
+
+        	//console.log(key, value);
+        	if (key == "location") {
+        		//document.getElementById("selectedFeatureDiv").innerHTML += "<br>" + key + " " + value ;
+
+        	}else if (key == "feature") {
+        		listElementContent += "<br><b>" + key + "</b>"  + ": " + value ;
+
+        	}else {
+        		listElementContent += "<br>" + key + ": " + value ;
+        	}
+
+        	li.html(listElementContent);
+        	li.appendTo(ul);
+
+        });
+
+    };
+    
+
+
+    if(checkboxIDs.indexOf(index) > -1){ //checked
+        selectedFeatureDiv.style.display = "block";
+        checkedNum ++;
+    }
+    else {//Unchecked
+        checkedNum --;
+        if (checkedNum == 0) {
+            selectedFeatureDiv.style.display = "none";
+            
+        }
+    }
+
+	//}
+}
+
+
+
+function exportSelectedFeatures() {
+  console.log(parsedContent.features);
+  var features = parsedContent.features;
+   var textContent = "";
+      for (var i = checkboxIDs.length - 1; i >= 0; i--) {
+      console.log(checkboxIDs[i]);
+      
+     
+
+        $.each(features[checkboxIDs[i]], function(key, value){
+      
+
+          //console.log(key, value);
+          if (key == "location") {
+            //document.getElementById("selectedFeatureDiv").innerHTML += "<br>" + key + " " + value ;
+
+          }else if (key == "feature") {
+            textContent += key   + ": " + value ;
+
+          }else {
+            textContent += "\r\n" + key + ": " + value ;
+          }
+
+        });
+        textContent += "\r\n//\r\n\r\n" 
+
+    };
+
+          
+  download('aaa.txt',textContent);
+
+}
+
+function linkDownload(a, filename, content) {
+        contentType =  'data:application/octet-stream,';
+        uriContent = contentType + encodeURIComponent(content);
+        a.setAttribute('href', uriContent);
+        a.setAttribute('download', filename);
+      }
+function download(filename, content) {
+        var a = document.createElement('a');
+        linkDownload(a, filename, content);
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }

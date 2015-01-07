@@ -10,7 +10,7 @@ function handleFileSelect(evt) {
             reader = new FileReader();
             parsedContent = reader.onload = function(e) {
             
-            var parsedContent = parseGBF(e.target.result);  
+            parsedContent = parseGBF(e.target.result);  
             //console.log(JSON.stringify(parsedContent));
 
             document.getElementById('name').innerHTML = "Keywords :" + parsedContent.metadata.keywords;
