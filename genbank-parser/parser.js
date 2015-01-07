@@ -208,6 +208,7 @@ function readGBKFeatures(gbkText) {
                         k += 1;
                     }
                     textline = textline.trim().split(/\s+/g);
+                    //console.log("FEATURE:"+textline);
                     feature = {};
                     feature.feature = textline[0];
                     feature.location = process_location(textline[1]);
@@ -217,12 +218,21 @@ function readGBKFeatures(gbkText) {
                     k = j + 1;
                     while (/^\s{6}/g.test(lines[k]) && /^[A-Z]/g.test(lines[k].trim())) {
                         textline += lines[k].trim();
+
                         j = k;
                         k += 1;
                     }
                     if (/[\w|\W]*=[\w|\W]*/.test(textline)) {
                         matches = textline.match(/([\w|\W]*)=([\w|\W]*)/);
-                        feature[matches[1]] = matches[2].replace(/\"/g, '');
+                        //console.log("textline:"+textline+" matches:"+matches);
+                        if (matches[1] in feature) {
+                            //console.log("duplicate"+matches[2].replace(/\"/g, ''))
+                            feature[matches[1]] += ", "+matches[2].replace(/\"/g, '');
+                        }else{
+                            feature[matches[1]] = matches[2].replace(/\"/g, '');
+                            
+                        }
+                        //console.log("feature[matches]"+feature[matches[1]]);
                         features[counter] = feature;
                     }
                 }
