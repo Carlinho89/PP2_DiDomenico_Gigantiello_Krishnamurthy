@@ -40,18 +40,26 @@ function displayFeatures(features) {
         checkbox.value = features[i].feature;
         
         checkbox.id = i;
+		
+		checkbox.index= i;
         
-        checkbox.start = features[i]
+        checkbox.start = features[i].location[0].start;
         checkbox.end = features[i].location[0].end;
+        checkbox.feature = features[i];
+        
         checkbox.onchange = function(){
             showSelectedFeatureDiv($(this), features);
-       };
-        //};
-        
+        };
+    
         var label = document.createElement('label')
         label.display = "inline-block";
         label.htmlFor = "feature " + i;
-        var txt = features[i].feature + " (" + JSON.stringify(features[i].location) + ")";
+        var txt = features[i].feature// + " (" + JSON.stringify(features[i].location) + ")";
+        ////////////
+        for (var j = 0; j < features[i].location.length; j++ ) {
+                txt += " [" + features[i].location[j].start   + ".." + features[i].location[j].end +"]" ;
+                }
+        ////////////
         label.appendChild(document.createTextNode(txt));
 
         container.appendChild(checkbox);

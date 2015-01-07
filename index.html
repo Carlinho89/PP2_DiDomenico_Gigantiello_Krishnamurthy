@@ -3,12 +3,16 @@
 <head>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
-    <script src = "parser.js" ></script>
-	<script src="http://listjs.com/no-cdn/list.js"></script>
-    <script src = "../GenBankController.js"></script>
-	<script src = "../Visualization/visualization.js"></script>
+    <script src = "genbank-parser/parser.js" ></script>
+    <script src = "GenBankController.js"></script>
+    <script src = "Visualization/visualization.js"></script>
+    <script src = "Extraction/extraction.js"></script>
     <style>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+	
 	#sequence {	
 	width:800px;
 	word-wrap: break-word;	
@@ -28,50 +32,13 @@
 		background-color:black;
 		display:block;
 	}
-
-	.list {
-  font-family:sans-serif;
-  margin:0;
-  padding:20px 0 0;
-}
-.list > li {
-  display:block;
-  background-color: #eee;
-  padding:10px;
-  box-shadow: inset 0 1px 0 #fff;
-}
-.avatar {
-  max-width: 150px;
-}
-img {
-  max-width: 100%;
-}
-h3 {
-  font-size: 16px;
-  margin:0 0 0.3rem;
-  font-weight: normal;
-  font-weight:bold;
-}
-p {
-  margin:0;
-}
-
-input {
-  border:solid 1px #ccc;
-  border-radius: 5px;
-  padding:7px 14px;
-  margin-bottom:10px
-}
-input:focus {
-  outline:none;
-  border-color:#aaa;
-}
-
 </style>
     
 	
 </head>
 <body>
+
+<div class="container">
 <h3>Genbank Parser</h3>
 <p>Developed for the course Protein Prediction held at the Technical University of Munich, for the winter semester 14-15</p>
 <input type="file" id="files" name="Input GBK" onchange="parse(event)"/>
@@ -89,6 +56,9 @@ input:focus {
 </div>
 <div id="sequence"></div>
 </div>
+</div>
 </body>
 </html>
+
+
 
