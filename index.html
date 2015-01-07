@@ -14,6 +14,11 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css" />
 		
     <style>
+	
+	li { list-style:none;}
+	.cap { 
+		text-transform:capitalize;
+	}
 	#sequence {	
 	width:800px;
 	word-wrap: break-word;	
@@ -74,26 +79,46 @@ Carlo Di Domenico
  
  </div>
 <div class="row">
-<div class="col-md-7">
-
-</div>
-</div>
-
+<div class="col-md-12">
 <input type="file" id="files"  class="btn btn-default" name="Input GBK" onchange="parse(event)"/>
-<p id="name"></p>
-<p id="features"></p>
-<div id="featureList"></div>
-<div id ="selectedFeatureDiv" style = "display:none;" class = "featureDiv"> 
-<ul id = "selectedFeatureList"> </ul>
+</div>
+</div>
+<div class="row"></div>
+
+<div class="row">
+
+<div class="col-md-8 col-md-offset-2">
+<table id="form" class="table">
+</table>
+</div>
 </div>
 
-<div id="sequence-container">
+<div class="row">
+<div class="col-md-3 col-md-offset-1">
+<div id="featureList"></div>
 <div style="display:inline;">
 <input class="btn btn-default" type="button" value="Visualize" onclick="highlight()"/>
 <input class="btn btn-default" type="button" value="Export" onclick="exportSelectedFeatures()"/>
 </div>
-<div id="sequence"></div>
+
 </div>
+<div class="col-md-7 col-md-offset-1">
+<div id ="selectedFeatureDiv" style = "display:none;" class = "featureDiv"> 
+<ul id = "selectedFeatureList"> </ul>
+</div>
+
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-10 col-md-offset-2">
+<div id="sequence" class="col-md-12">
+
+</div>
+
+</div>
+</div>
+
 </div>
 </body>
 </html>
