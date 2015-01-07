@@ -1,0 +1,28 @@
+LOCUS      
+DEFINITION  
+ACCESSION   
+VERSION     
+KEYWORDS    
+SOURCE      
+  ORGANISM  
+REFERENCE   
+  AUTHORS   
+  TITLE     
+  JOURNAL   
+REFERENCE   
+  AUTHORS   
+  TITLE     
+  JOURNAL   
+COMMENT     
+FEATURES             
+     source          
+     CAAT_signal     
+     TATA_signal     
+     CDS             
+     exon            
+     intron          
+     exon            
+ORIGIN      
+        
+//
+

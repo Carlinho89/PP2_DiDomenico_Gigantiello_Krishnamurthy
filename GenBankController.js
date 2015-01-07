@@ -10,7 +10,7 @@ function handleFileSelect(evt) {
             reader = new FileReader();
             parsedContent = reader.onload = function(e) {
             
-            var parsedContent = parseGBF(e.target.result);  
+            parsedContent = parseGBF(e.target.result);  
             //console.log(JSON.stringify(parsedContent));
 
             document.getElementById('name').innerHTML = "Keywords :" + parsedContent.metadata.keywords;
@@ -38,13 +38,34 @@ function displayFeatures(features) {
         checkbox.type = "checkbox";
         checkbox.name = features[i].feature;
         checkbox.value = features[i].feature;
+        
         checkbox.id = i;
+		
+		checkbox.index= i;
+
+		if(features[i].location.length>1) { 
+			checkbox.hasMultiple = true;
+			checkbox.location = features[i].location;
+		}  else {
+			checkbox.hasMultiple = false;			
+		}
 		checkbox.start = features[i].location[0].start;
 		checkbox.end = features[i].location[0].end;
+        checkbox.feature = features[i];
+        
+        checkbox.onchange = function(){
+            showSelectedFeatureDiv($(this), features);
+        };
+    
         var label = document.createElement('label')
         label.display = "inline-block";
         label.htmlFor = "feature " + i;
-		var txt = features[i].feature + " (" + JSON.stringify(features[i].location) + ")";
+        var txt = features[i].feature// + " (" + JSON.stringify(features[i].location) + ")";
+        ////////////
+        for (var j = 0; j < features[i].location.length; j++ ) {
+                txt += " [" + features[i].location[j].start   + ".." + features[i].location[j].end +"]" ;
+                }
+        ////////////
         label.appendChild(document.createTextNode(txt));
 
         container.appendChild(checkbox);
