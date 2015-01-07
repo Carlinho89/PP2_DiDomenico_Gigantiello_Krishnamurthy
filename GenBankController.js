@@ -37,6 +37,9 @@ function handleFileSelect(evt) {
             //document.getElementById('sequence').innerHTML = "Sequence : <br>" + addSpansForFeatures(parsedContent.sequence,parsedContent.features);
             document.getElementById('sequence').innerHTML = "Sequence : <br>" + addSpans(parsedContent.sequence);
             displayFeatures(parsedContent.features);
+            if (!(parsedContent == null)) {
+                document.getElementById('buttonsDiv').style.display = 'inline';
+            }
             //displayFeatures(JSON.stringify(parsedContent.features));
         }
         reader.readAsText(f);      
