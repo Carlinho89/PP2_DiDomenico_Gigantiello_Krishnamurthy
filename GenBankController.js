@@ -60,7 +60,12 @@ function displayFeatures(features) {
         var label = document.createElement('label')
         label.display = "inline-block";
         label.htmlFor = "feature " + i;
-        var txt = features[i].feature + " (" + JSON.stringify(features[i].location) + ")";
+        var txt = features[i].feature// + " (" + JSON.stringify(features[i].location) + ")";
+        ////////////
+        for (var j = 0; j < features[i].location.length; j++ ) {
+                txt += " [" + features[i].location[j].start   + ".." + features[i].location[j].end +"]" ;
+                }
+        ////////////
         label.appendChild(document.createTextNode(txt));
 
         container.appendChild(checkbox);

@@ -15,7 +15,13 @@ function exportSelectedFeatures() {
           //console.log(key, value);
           if (key == "location") {
             //document.getElementById("selectedFeatureDiv").innerHTML += "<br>" + key + " " + value ;
+            for (var j = 0; j < features[checkboxIDs[i]].location.length; j++ ) {
 
+              
+              textContent += "\r\n" + features[checkboxIDs[i]].location[j].start   + ".." + features[checkboxIDs[i]].location[j].end ;
+            }
+
+            
           }else if (key == "feature") {
             textContent += key   + ": " + value ;
 
@@ -28,8 +34,23 @@ function exportSelectedFeatures() {
 
     };
 
-          
-  download('aaa.txt',textContent);
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+
+if(dd<10) {
+    dd='0'+dd
+} 
+
+if(mm<10) {
+    mm='0'+mm
+} 
+
+today = mm+'_'+dd+'_'+yyyy;
+      
+var geneName = parsedContent.metadata.keywords;
+  download('exportedFeatures('+geneName+"_"+today+').txt',textContent);
 
 }
 

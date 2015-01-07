@@ -3,7 +3,9 @@ function createChecklist(jsonFeatureList) {
 }
 var checkboxIDs = [];
 
+
 var colors =  d3.scale.category20(); 
+
 var sequenceLength;
 RandomColor = function() {   
 	var rand = Math.floor(Math.random()*20);	
@@ -120,7 +122,11 @@ function showSelectedFeatureDiv(thisObj, features) {//feature, selectedID) {
 
         	//console.log(key, value);
         	if (key == "location") {
-        		//document.getElementById("selectedFeatureDiv").innerHTML += "<br>" + key + " " + value ;
+
+        		for (var j = 0; j < features[checkboxIDs[i]].location.length; j++ ) {
+                listElementContent += "<br>" + features[checkboxIDs[i]].location[j].start   + ".." + features[checkboxIDs[i]].location[j].end ;
+                }
+
 
         	}else if (key == "feature") {
         		listElementContent += "<br><b>" + key + "</b>"  + ": " + value ;
