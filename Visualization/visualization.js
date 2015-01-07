@@ -3,7 +3,7 @@ function createChecklist(jsonFeatureList) {
 }
 var checkboxIDs = [];
 
-var colors =  d3.scale.category20b(); 
+var colors =  d3.scale.category20(); 
 var sequenceLength;
 RandomColor = function() {   
 	var rand = Math.floor(Math.random()*20);	
@@ -21,12 +21,25 @@ reset();
 var checkboxes = $('input:checkbox:checked');
   for(i=0;i<checkboxes.length;i++) {
 	//var id = checkboxes[i].name + checkboxes[i].id;	
-	var start = parseInt(checkboxes[i].start);	
-	var end = parseInt(checkboxes[i].end);	
-	var color = RandomColor();
-	for(j=start;j<=end;j++) {
-		document.getElementById("feature"+j).style.background = color;
+	if(checkboxes[i].hasMultiple) { 
+		var location = checkboxes[i].location;
+		for(i=0;i<location.length;i++) { 
+			var start = parseInt(location[i].start);	
+			var end = parseInt(location[i].end);	
+			var color = RandomColor();
+			for(j=start;j<=end;j++) {
+				document.getElementById("feature"+j).style.background = color;
+			}
+		}
+	} else {
+		var start = parseInt(checkboxes[i].start);	
+		var end = parseInt(checkboxes[i].end);	
+		var color = RandomColor();
+		for(j=start;j<=end;j++) {
+			document.getElementById("feature"+j).style.background = color;
+		}
 	}
+	
   }
 }
 
