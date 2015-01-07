@@ -42,9 +42,15 @@ function displayFeatures(features) {
         checkbox.id = i;
 		
 		checkbox.index= i;
-        
-        checkbox.start = features[i].location[0].start;
-        checkbox.end = features[i].location[0].end;
+
+		if(features[i].location.length>1) { 
+			checkbox.hasMultiple = true;
+			checkbox.location = features[i].location;
+		}  else {
+			checkbox.hasMultiple = false;			
+		}
+		checkbox.start = features[i].location[0].start;
+		checkbox.end = features[i].location[0].end;
         checkbox.feature = features[i];
         
         checkbox.onchange = function(){

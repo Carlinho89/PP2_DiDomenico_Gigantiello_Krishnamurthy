@@ -9,10 +9,12 @@
     <script src = "GenBankController.js"></script>
     <script src = "Visualization/visualization.js"></script>
     <script src = "Extraction/extraction.js"></script>
+
     <style>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
-	
+		
+    <style>
 	#sequence {	
 	width:800px;
 	word-wrap: break-word;	
@@ -39,9 +41,46 @@
 <body>
 
 <div class="container">
-<h3>Genbank Parser</h3>
-<p>Developed for the course Protein Prediction held at the Technical University of Munich, for the winter semester 14-15</p>
-<input type="file" id="files" name="Input GBK" onchange="parse(event)"/>
+
+<div class="row"></div>
+
+<div class="row">
+<div class="col-md-8"><h1> TUM : Technical University of Munich </h1></div>
+<div class="col-md-4"><h2> RostLab </h2></div>
+</div>
+<div class="row">
+<div class="col-md-2"></div>
+<div class="col-md-8"><h3>Parsing and Visualization of Genbank Files</h3></div>
+<div class="col-md-2"></div>
+</div>
+<div class="row">
+<div class="col-md-7">
+<div class="row">
+<div class="col-md-2"></div>
+<div class="col-md-8"><p>Developed for the course Protein Prediction held at the Technical University of Munich, for the winter semester 14-15</p></div>
+
+<div class="col-md-2"></div>
+</div>
+
+</div>
+
+<div class="col-md-5">
+
+<blockquote> By: <br>
+Sai kiran Krishna murthy<br>
+Enrico Gigantiello <br>
+Carlo Di Domenico
+ </blockquote>
+</div>
+ 
+ </div>
+<div class="row">
+<div class="col-md-7">
+
+</div>
+</div>
+
+<input type="file" id="files"  class="btn btn-default" name="Input GBK" onchange="parse(event)"/>
 <p id="name"></p>
 <p id="features"></p>
 <div id="featureList"></div>
@@ -51,8 +90,10 @@
 
 <div id="sequence-container">
 <div style="display:inline;">
-<input type="button" value="Visualize" onclick="highlight()"/>
-<input type="button" value="Export" onclick="exportSelectedFeatures()"/>
+
+<input class="btn btn-default" type="button" value="Visualize" onclick="highlight()"/>
+<input class="btn btn-default" type="button" value="Export" onclick="exportSelectedFeatures()"/>
+
 </div>
 <div id="sequence"></div>
 </div>
