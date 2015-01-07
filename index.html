@@ -44,11 +44,20 @@
 <p id="name"></p>
 <p id="features"></p>
 <div id="featureList"></div>
+<div id ="selectedFeatureDiv" style = "display:none;" class = "featureDiv"> 
+<ul id = "selectedFeatureList"> </ul>
+</div>
+
 <div id="sequence-container">
+<div style="display:inline;">
 <input type="button" value="Visualize" onclick="highlight()"/>
+<input type="button" value="Export" onclick="exportSelectedFeatures()"/>
+</div>
 <div id="sequence"></div>
 </div>
 </div>
 </body>
 </html>
+
+
 
