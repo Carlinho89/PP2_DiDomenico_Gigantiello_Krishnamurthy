@@ -11,10 +11,27 @@ function handleFileSelect(evt) {
             parsedContent = reader.onload = function(e) {
             
             parsedContent = parseGBF(e.target.result);  
-            //console.log(JSON.stringify(parsedContent));
+            console.log(JSON.stringify(parsedContent));
 
-            document.getElementById('name').innerHTML = "Keywords :" + parsedContent.metadata.keywords;
-            document.getElementById('features').innerHTML = "Features :" + JSON.stringify(parsedContent.features);
+			$.each(parsedContent.metadata, function(key, value){			
+				if(typeof(value)=="object") {		
+					if(value instanceof Array) {
+						//createRowWithTable("form",key,JSON.stringify(value));
+					} else {
+						$.each(value, function(key1, value1){ 
+							//createRowWithTable("form",key1,value1);
+						});						
+					}					
+					
+				} else { 
+					createRow("form",key,value);
+				}
+				
+			});
+			
+		
+			
+            //document.getElementById('features').innerHTML = "Features :" + JSON.stringify(parsedContent.features);
 			//parsedContent.sequence
 			//new seq2gff(parsedContent.sequence,document.getElementById('sequence'));
             //document.getElementById('sequence').innerHTML = "Sequence : <br>" + addSpansForFeatures(parsedContent.sequence,parsedContent.features);
@@ -22,10 +39,55 @@ function handleFileSelect(evt) {
             displayFeatures(parsedContent.features);
             //displayFeatures(JSON.stringify(parsedContent.features));
         }
-        reader.readAsText(f);
-        
+        reader.readAsText(f);      
 
 }
+
+
+function createRow(id,txt1,txt2) {
+
+var table = document.getElementById(id);
+
+// Create an empty <tr> element and add it to the 1st position of the table:
+var row = table.insertRow(0);
+
+// Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+var cell1 = row.insertCell(0);
+var cell2 = row.insertCell(1);
+
+cell1.className = "cap";
+
+// Add some text to the new cells:
+cell1.innerHTML = txt1;
+cell2.innerHTML = txt2;
+}
+
+function createRowWithTable(id,txt1,txt2) {
+
+var table = document.getElementById(id);
+
+// Create an empty <tr> element and add it to the 1st position of the table:
+var row = table.insertRow(0);
+
+// Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+var cellone = row.insertCell(0);
+
+
+var table2 = document.createElement("table");
+
+table2.class = "table";
+
+var row2 = table2.insertRow(0);
+var cell1 = row2.insertCell(0);
+var cell2 = row2.insertCell(1);
+
+// Add some text to the new cells:
+cell1.innerHTML = txt1;
+cell2.innerHTML = txt2;
+
+cellone.innerHTML = table2;
+}
+
 
 function displayFeatures(features) {
     //console.log(features);
@@ -76,3 +138,13 @@ function displayFeatures(features) {
     } 
 }
 
+function isJson(str) {
+    try {
+        JSON.parse(str);
+		return true;
+    } catch (e) {
+        return false;
+    }
+	return false;
+    
+}
