@@ -1,75 +1,84 @@
-function createChecklist(jsonFeatureList) {
-    
-}
 var checkboxIDs = [];
-
-
 var colors =  d3.scale.category20(); 
 
 var sequenceLength;
 RandomColor = function() {   
-	var rand = Math.floor(Math.random()*20);	
-	var color = colors(rand);	
+    var rand = Math.floor(Math.random()*20);	
+    var color = colors(rand);	
     return color;
 }
 
 function reset() {	
-	for(i=1;i<=sequenceLength;i++) {  document.getElementById("feature"+i).style.background = "white"; }	
-	$("#legend").empty();
+    for(i=1;i<=sequenceLength;i++) {
+        document.getElementById("feature"+i).style.background = "white";
+    }	
+    $("#legend").empty();   
+}
+
+function resetContainers() {
+    
+    $("#featureList").empty();
+    $("#form").empty();
+    $("#selectedFeatureList").empty();
+    
+    $("#legend").empty();
+    
 }
 
 
 function highlight() {
-reset();
-var lb;
-var checkboxes = $('input:checkbox:checked');
-  for(i=0;i<checkboxes.length;i++) {
-	//var id = checkboxes[i].name + checkboxes[i].id;	
-	if(checkboxes[i].hasMultiple) { 
-		var location = checkboxes[i].location;
-		for(j=0;j<location.length;j++) { 
-			var start = parseInt(location[j].start);	
-			var end = parseInt(location[j].end);	
-			var color = RandomColor();
-			lb="<span class='block-legend' style='background-color:"+color+"'></span>";		
-			addToList("legend",lb+checkboxes[i].name + "("+start+".."+end+")");
-			for(k=start;k<=end;k++) {
-				document.getElementById("feature"+k).style.background = color;
-			}
-		}
-	} else {
-		var start = parseInt(checkboxes[i].start);	
-		var end = parseInt(checkboxes[i].end);	
-		var color = RandomColor();
-		lb="<span class='block-legend' style='background-color:"+color+"'></span>";
-		addToList("legend",lb+checkboxes[i].name + "("+start+".."+end+")");
-		for(j=start;j<=end;j++) {
-			document.getElementById("feature"+j).style.background = color;
-		}
-	}
+    reset();
+    var lb;
+    var checkboxes = $('input:checkbox:checked');
+    for(i=0;i<checkboxes.length;i++) {
+        //var id = checkboxes[i].name + checkboxes[i].id;	
+        if(checkboxes[i].hasMultiple) { 
+            var location = checkboxes[i].location;
+            for(j=0;j<location.length;j++) { 
+                var start = parseInt(location[j].start);	
+                var end = parseInt(location[j].end);	
+                var color = RandomColor();
+                lb="<span class='block-legend' style='background-color:"+color+"'></span>";		
+                addToList("legend",lb+checkboxes[i].name + "("+start+".."+end+")");
+                for(k=start;k<=end;k++) {
+                    document.getElementById("feature"+k).style.background = color;
+                }
+            }
+        } else {
+            var start = parseInt(checkboxes[i].start);	
+            var end = parseInt(checkboxes[i].end);	
+            var color = RandomColor();
+            lb="<span class='block-legend' style='background-color:"+color+"'></span>";
+            addToList("legend",lb+checkboxes[i].name + "("+start+".."+end+")");
+            for(j=start;j<=end;j++) {
+                document.getElementById("feature"+j).style.background = color;
+            }
+        }
 	
-  }
+    }
 }
 
 
 function addSpans(sequence) {
-var rslt  = "";
-var count_div ="<div class='row'><div class='col-md-1'>";
-var start_inn = "<div class='col-md-11'>";
-var start_row = "<div class='row'>";
-var start_div = "<div class='col-md-2'>";
-var sep  = "<div class='seperator'></div>";
-var end = "</div>";
-var linesep = "<div class='line-seperator'></div>";
-rslt = count_div + "1" +end+start_inn + start_row + start_div;
-for (var i = 0; i < sequence.length; i++){ 
-	var j = i+1;
-	rslt = rslt + "<span id=feature"+j+">"+sequence[i]+"</span>";
-	if(i%60==0 && i!=0) { rslt = rslt + end+ end + end+ end +count_div + j +end+start_inn + start_row + start_div; } else	if(i%10==0 && i!=0) { rslt = rslt + end + start_div ;}
+    var rslt  = "";
+    var count_div ="<div class='row'><div class='col-md-1'>";
+    var start_inn = "<div class='col-md-11'>";
+    var start_row = "<div class='row'>";
+    var start_div = "<div class='col-md-2'>";    
+    var end = "</div>";    
+    rslt = count_div + "1" +end+start_inn + start_row + start_div;
+    for (var i = 0; i < sequence.length; i++){ 
+        var j = i+1;        
+        if(i%60==0 && i!=0) {
+            rslt = rslt + end + end + end + end + count_div + j + end + start_inn + start_row + start_div;
+        } else	if(i%10==0 && i!=0) {
+            rslt = rslt + end + start_div ;
+        }
+        rslt = rslt + "<span id=feature"+j+">"+sequence[i]+"</span>";
 	
-}
-sequenceLength = sequence.length;
-return rslt;
+    }
+    sequenceLength = sequence.length;
+    return rslt;
 }
 
 
@@ -82,13 +91,13 @@ function add(type, appendTo) {
     //Assign different attributes to the element. 
     
     element.onclick = function() { // Note this is a function
-         writeToFile("Hello", "World");
+        writeToFile("Hello", "World");
     };
     element.setAttribute('type','button');
-	element.setAttribute('name','Export Feature');
-	element.setAttribute('value','Export Feature');
+    element.setAttribute('name','Export Feature');
+    element.setAttribute('value','Export Feature');
 	
-	appendTo.appendChild(element);
+    appendTo.appendChild(element);
 
 }
 
@@ -103,51 +112,51 @@ function writeToFile(d1, d2){
 function showSelectedFeatureDiv(thisObj, features) {//feature, selectedID) {
     
     
-  var index = thisObj.attr('id');
+    var index = thisObj.attr('id');
 
-	var selectedFeature = features[index];
+    var selectedFeature = features[index];
 
-	var selectedFeatureDiv = document.getElementById("selectedFeatureDiv");
+    var selectedFeatureDiv = document.getElementById("selectedFeatureDiv");
 	
         	
-  checkboxIDs = [];	
+    checkboxIDs = [];	
 	
     $(":checkbox:checked").each(function(index){
         checkboxIDs.push($(this).attr('id'));
     })
-	console.log(checkboxIDs);
+    console.log(checkboxIDs);
    
-   // for (selectedID in checkboxIDs) {
-     //    console.log(selectedID);
+    // for (selectedID in checkboxIDs) {
+    //    console.log(selectedID);
 
-	var ul = $("#selectedFeatureList");
-	ul.empty();
+    var ul = $("#selectedFeatureList");
+    ul.empty();
     for (var i = checkboxIDs.length - 1; i >= 0; i--) {
-    	console.log(checkboxIDs[i]);
+        console.log(checkboxIDs[i]);
     	
-    	var li = $(document.createElement('li'));
-    	var listElementContent = "";
+        var li = $(document.createElement('li'));
+        var listElementContent = "";
 
         $.each(features[checkboxIDs[i]], function(key, value){
 			
 
-        	//console.log(key, value);
-        	if (key == "location") {
+            //console.log(key, value);
+            if (key == "location") {
 
-        		for (var j = 0; j < features[checkboxIDs[i]].location.length; j++ ) {
-                listElementContent += "<br>" + features[checkboxIDs[i]].location[j].start   + ".." + features[checkboxIDs[i]].location[j].end ;
+                for (var j = 0; j < features[checkboxIDs[i]].location.length; j++ ) {
+                    listElementContent += "<br>" + features[checkboxIDs[i]].location[j].start   + ".." + features[checkboxIDs[i]].location[j].end ;
                 }
 
 
-        	}else if (key == "feature") {
-        		listElementContent += "<br><b>" + key + "</b>"  + ": " + value ;
+            }else if (key == "feature") {
+                listElementContent += "<br><b>" + key + "</b>"  + ": " + value ;
 
-        	}else {
-        		listElementContent += "<br>" + key + ": " + value ;
-        	}
+            }else {
+                listElementContent += "<br>" + key + ": " + value ;
+            }
 
-        	li.html(listElementContent);
-        	li.appendTo(ul);
+            li.html(listElementContent);
+            li.appendTo(ul);
 
         });
 
@@ -167,13 +176,13 @@ function showSelectedFeatureDiv(thisObj, features) {//feature, selectedID) {
         }
     }
 
-	//}
+//}
 }
 
 
 function addToList(id,txt) {				
-			var li = document.createElement("li");
-			li.innerHTML = txt;
-			//li.appendChild(document.createTextNode(txt));
-			$(li).appendTo("#"+id);
+    var li = document.createElement("li");
+    li.innerHTML = txt;
+    //li.appendChild(document.createTextNode(txt));
+    $(li).appendTo("#"+id);
 }

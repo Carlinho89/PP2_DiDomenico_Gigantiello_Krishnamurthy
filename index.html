@@ -1,253 +1,251 @@
 <!DOCTYPE html>
 <html>
-<head>
+    <head>
 
-<title>Parsing and Visualization of Genbank Files</title>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-
-
-
-    <script src = "genbank-parser/parser.js" ></script>
-    <script src = "GenBankController.js"></script>
-    <script src = "Visualization/visualization.js"></script>
-    <script src = "Extraction/extraction.js"></script>	
-
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css" />
-		
-    <style>
-	
-	.vcenter {
-    display: inline-block;
-    vertical-align: middle;
-    float: none;
-}
-	
-	.block-legend { 
-		display:inline-block;
-		width:10px;
-		margin-right:6px;
-		height:10px;
-	}
-	label { padding:5px; } 
-	li { list-style:none;}
-	.cap { 
-		text-transform:capitalize;
-		
-	}
-	
-	#legend { 
-		font-size:16px;
-	}
-	#sequence {	
-	width:800px;
-	word-wrap: break-word;	
-	text-align:justify;
-	}
-	
-	td, li {
-	word-break: break-all; 
-	}
-	
-	.seperator { 
-		padding-left:6px;
-		font-size:6px;
-		width:130px;
-		text-align:center;
-		display:inline;
-	} 
-	.sequence-container {
-		width:500px;
-		overflow:auto;
-		background-color:black;
-		display:block;
-	}
-	
-	.scroll-div {
-		height:250px;
-		overflow:auto;
-		padding:20px;
-		margin:0 auto;
-		overflow-x:hidden;
-	}
-</style>
-    
-	
-</head>
-<body>
-
-<div class="container">
+        <title>Parsing and Visualization of Genbank Files</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
 
-<div class="row">
-<div class="col-md-1"><img width="196px" height="128px" class="vcenter" src="css/tum.jpg"/></div>
-<div class="col-md-7 col-md-offset-2">
-<div class="row">
-<div class="col-md-12">
-<h1 class="text-center" > TUM : Technical University of Munich </h1>
-<h2 class="text-center" > Chair Of Bio-Informatics </h2>
-<h3 class="text-center" > Protein Prediction 2 by Prof. Burkhard Rost (winter semester 14-15) </h3>
 
-</div>
-</div>
+        <script src = "genbank-parser/parser.js" ></script>
+        <script src = "GenBankController.js"></script>
+        <script src = "Visualization/visualization.js"></script>
+        <script src = "Extraction/extraction.js"></script>	
 
-<div class="row">
-<div class="text-center" class="col-md-12">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css" />
 
+        <style>
 
-</div>
-</div>
- 
-</div>
-<div class="col-md-1"><img class="vcenter" width="150px" height="150px" src="css/rost.png"/></div>
-</div>
+            .vcenter {
+                display: inline-block;
+                vertical-align: middle;
+                float: none;
+            }
 
+            .block-legend { 
+                display:inline-block;
+                width:10px;
+                margin-right:6px;
+                height:10px;
+            }
+            label { padding:5px; } 
+            li { list-style:none;}
+            .cap { 
+                text-transform:capitalize;
 
-<br>
-<div class="row">
+            }
 
-</div>
+            #legend { 
+                font-size:16px;
+            }
+            #sequence {	
+                width:800px;
+                word-wrap: break-word;	
+                text-align:justify;
+                font-family:monospace;
+            }
 
+            td, li {
+                word-break: break-all; 
+            }
 
-<div class="row">
-<div class="col-md-12 text-center" >
-<h4>Project Name: Parsing and Visualization of Genbank Files</h4>
-</div>
-</div>
-<div class="row">
+            .seperator { 
+                padding-left:6px;
+                font-size:6px;
+                width:130px;
+                text-align:center;
+                display:inline;
+            } 
+            .sequence-container {
+                width:500px;
+                overflow:auto;
+                background-color:black;
+                display:block;
+            }
 
-<div class="col-md-6">
-<h4><span class="label label-default">Developed By:</span></h4>
-<blockquote>  <br>
-Sai kiran Krishna murthy<br>
-Enrico Gigantiello <br>
-Carlo Di Domenico
- </blockquote> 
-</div>
-
-<div class="col-md-6">
-<h4><span class="label label-default"> Mentored By:</span></h4>
-<blockquote> <br>
-Dr. Khalil El Mazouari 
- </blockquote>
-</div>
-</div>
-
-</div>
-<div class="row">
-<div class="col-md-8">
-<div class="row">
-<div class="col-md-2"></div>
-<div class="col-md-8"></div>
-
-<div class="col-md-2"></div>
-</div>
-
-</div>
-
-<div class="col-md-3 col-md-offset-1">
-
- 
-
- 
-</div>
- 
- </div>
- 
- 
-<div class="row">
-<div class="col-md-11 col-md-offset-1">
-<label for="files" >Genbank File: </label>
-<input type="file" id="files"  class="btn btn-default" name="Input GBK" onchange="parse(event)"/>
-</div>
-</div>
-<div class="row"></div>
-<br><br>
-<div class="row">
-
-<div class="col-md-10 col-md-offset-2">
-<div class="accordion" id="accordion2">
-<div class="accordion-group">
-<div class="accordion-heading">
-<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-Click here to hide/show the metadata
-</a>
-</div>
-<div id="collapseOne" class="accordion-body collapse in">
-<div class="accordion-inner">
-<table id="form" class="table">
-</table>
-</div>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-
-<div class="row">
-<div class="col-md-3 col-md-offset-1">
-
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Features:</h3>
-  </div>
-  <div class="panel-body">
-    <div id="featureList"></div>
-	<div id="buttonsDiv" style="display:none;">
-<input class="btn btn-default" type="button" value="Visualize" onclick="highlight()"/>
-<input class="btn btn-default" type="button" value="Export" onclick="exportSelectedFeatures()"/>
-</div>
-  </div>
-</div>
-
-</div>
-<div class="col-md-7 col-md-offset-1">
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Selected Features:</h3>
-  </div>
-  <div class="panel-body">
-
-<div id ="selectedFeatureDiv" class="scroll-div" style = "display:none;" class = "featureDiv"> 
-<ul id = "selectedFeatureList"> </ul>
-</div>    
-  </div>
-</div>
+            .scroll-div {
+                height:250px;
+                overflow:auto;
+                padding:20px;
+                margin:0 auto;
+                overflow-x:hidden;
+            }
+        </style>
 
 
-</div>
-</div>
+    </head>
+    <body>
 
-<div class="row">
-<div class="col-md-9 ">
-<div class="col-md-12">
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Sequence:</h3>
-  </div>
-  <div class="panel-body">
-    <div id="sequence"></div>
-  </div>
-</div>
-</div>
+        <div class="container">
 
-</div>
-<div class="col-md-3">
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Legend:</h3>
-  </div>
-  <div class="panel-body">
-    <ul id="legend"></ul>
-  </div>
-</div></div>
-</div>
+            <div class="row">
+                <div class="col-md-1"><img width="196px" height="128px" class="vcenter" src="css/tum.jpg"/></div>
+                <div class="col-md-7 col-md-offset-2">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="text-center" > TUM : Technical University of Munich </h1>
+                            <h2 class="text-center" > Chair Of Bio-Informatics </h2>
+                            <h3 class="text-center" > Protein Prediction 2 by Prof. Burkhard Rost (winter semester 14-15) </h3>
 
-</div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="text-center" class="col-md-12">
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-1"><img class="vcenter" width="150px" height="150px" src="css/rost.png"/></div>
+            </div>
+
+
+            <br>
+            <div class="row">
+
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12 text-center" >
+                    <h4>Project Name: Parsing and Visualization of Genbank Files</h4>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-6">
+                    <h4><span class="label label-default">Developed By:</span></h4>
+                    <blockquote>  <br>
+                        Sai kiran Krishna murthy<br>
+                        Enrico Gigantiello <br>
+                        Carlo Di Domenico
+                    </blockquote> 
+                </div>
+
+                <div class="col-md-6">
+                    <h4><span class="label label-default"> Mentored By:</span></h4>
+                    <blockquote> <br>
+                        Dr. Khalil El Mazouari 
+                    </blockquote>
+                </div>
+            </div>
+
+        
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8"></div>
+
+                    <div class="col-md-2"></div>
+                </div>
+
+            </div>
+
+            <div class="col-md-3 col-md-offset-1">
+
+
+
+
+            </div>
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-11 col-md-offset-1">
+                <label for="files" >Genbank File: </label>
+                <input type="file" id="files"  class="btn btn-default" name="Input GBK" onchange="parse(event)"/>
+            </div>
+        </div>
+        
+        <br><br>
+        <div class="row">
+
+            <div class="col-md-10 col-md-offset-2">
+                <div class="accordion" id="accordion2">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                                Click here to hide/show the metadata
+                            </a>
+                        </div>
+                        <div id="collapseOne" class="accordion-body collapse in">
+                            <div class="accordion-inner">
+                                <table id="form" class="table">
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Features:</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div id="featureList"></div>
+                        <div id="buttonsDiv" style="display:none;">
+                            <input class="btn btn-default" type="button" value="Visualize" onclick="highlight()"/>
+                            <input class="btn btn-default" type="button" value="Export" onclick="exportSelectedFeatures()"/>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-7 col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Selected Features:</h3>
+                    </div>
+                    <div class="panel-body">
+
+                        <div id ="selectedFeatureDiv" class="scroll-div featureDiv" style = "display:none;" > 
+                            <ul id = "selectedFeatureList"> </ul>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-9 ">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Sequence:</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="sequence"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-3">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Legend:</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul id="legend"></ul>
+                    </div>
+                </div></div>
+        </div>
+
+    </div>
 </body>
 </html>
 
