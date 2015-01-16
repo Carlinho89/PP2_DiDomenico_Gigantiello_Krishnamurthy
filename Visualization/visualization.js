@@ -1,8 +1,18 @@
+module.exports = {
+    reset : reset,
+    resetContainers : resetContainers,
+    highlight : highlight,
+    addSpans:addSpans,
+    add:add,
+    writeToFile:writeToFile,
+    showSelectedFeatureDiv:showSelectedFeatureDiv,
+    addToList:addToList
+
+}
 var checkboxIDs = [];
 var colors =  d3.scale.category20(); 
-
 var sequenceLength;
-RandomColor = function() {   
+var RandomColor = function() {   
     var rand = Math.floor(Math.random()*20);	
     var color = colors(rand);	
     return color;
@@ -24,8 +34,6 @@ function resetContainers() {
     $("#legend").empty();
     
 }
-
-
 function highlight() {
     reset();
     var lb;
@@ -57,8 +65,6 @@ function highlight() {
 	
     }
 }
-
-
 function addSpans(sequence) {
     var rslt  = "";
     var count_div ="<div class='row'><div class='col-md-1'>";
@@ -80,11 +86,8 @@ function addSpans(sequence) {
     sequenceLength = sequence.length;
     return rslt;
 }
-
-
 var checkedNum = 0;
-
-
+/*
 function add(type, appendTo) {
     //Create an input type dynamically.   
     var element = document.createElement("input");
@@ -178,7 +181,7 @@ function showSelectedFeatureDiv(thisObj, features) {//feature, selectedID) {
 
 //}
 }
-
+*/
 
 function addToList(id,txt) {				
     var li = document.createElement("li");

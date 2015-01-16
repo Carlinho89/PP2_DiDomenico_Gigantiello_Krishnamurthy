@@ -1,3 +1,11 @@
+var parseGBF = require("./genbank-parser/parser");
+var exportSelectedFeatures = require("./Extraction/extraction").exportSelectedFeatures;
+var highlight = require("./Visualization/visualization").highlight
+var addSpans = require("./Visualization/visualization").addSpans
+document.getElementById("btn-vis").addEventListener("click", highlight);
+document.getElementById("btn-exp").addEventListener("click", exportSelectedFeatures);
+
+
 var jsonFile;
 var parsedContent;
 function parse(evt) {
@@ -115,4 +123,6 @@ function displayFeatures(features) {
     
     } 
 }
+
+
 

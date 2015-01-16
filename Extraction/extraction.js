@@ -1,4 +1,4 @@
-
+var $ = require("jquery");
 
 function exportSelectedFeatures() {
   console.log(parsedContent.features);
@@ -67,3 +67,7 @@ function download(filename, content) {
         a.click();
         document.body.removeChild(a);
     }
+
+if(module != undefined && module.exports != undefined){
+  module.exports = exportSelectedFeatures;
+}

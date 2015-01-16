@@ -267,8 +267,7 @@ function readGBKSequence(gbkText) {
     obj.sequence = sequence;
     return JSON.stringify(obj);
 }
-/*
+
 if(module != undefined && module.exports != undefined){
 	module.exports = parseGBF;
 }
-*/
