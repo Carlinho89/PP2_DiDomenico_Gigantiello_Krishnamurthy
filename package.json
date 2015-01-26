@@ -1,7 +1,7 @@
 {
   "name": "biojs-vis-genbank",
   "description": "genbank parser for genbank files",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/Carlinho89/PP2_DiDomenico_Gigantiello_Krishnamurthy",
   "contributors": [
     {
@@ -34,6 +34,7 @@
     {
       "name": "Prof. Burkhard Rost"
     }
+    
   ],
   "repository": {
     "type": "git",
@@ -95,11 +96,5 @@
   },
   "keywords": [
     "biojs"
-  ],
-  "readme": "# biojs-vis-genbank\n\n[![NPM version](http://img.shields.io/npm/v/biojs-vis-genbank.svg)](https://www.npmjs.org/package/biojs-vis-genbank) \n\n> \n\n## Getting Started\nInstall the module with: `npm install biojs-vis-genbank`\n\n```javascript\nvar genbank = require('biojs-vis-genbank');\ngenbank.hello(\"biojs\"); // \"hello biojs\"\n```\n\n## Documentation\n\n#### .hello(name)\n\n**Parameter**: `name`\n**Type**: `String`\n**Example**: `biojs`\n\nThe 'hello' method is responsible for showing a name.\n\nHow to use this method\n\n```javascript\ngenbank.hello('biojs'); // \"hello biojs\"\n```\n\n## Contributing\n\nAll contributions are welcome.\n\n## Support\n\nIf you have any problem or suggestion please open an issue [here](https://github.com/Cuzzo89/biojs-vis-genbank/issues).\n\n## License \nThis software is licensed under the Apache 2 license, quoted below.\n\nCopyright (c) 2015, Cuzzo89\n\nLicensed under the Apache License, Version 2.0 (the \"License\"); you may not\nuse this file except in compliance with the License. You may obtain a copy of\nthe License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT\nWARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the\nLicense for the specific language governing permissions and limitations under\nthe License.\n",
-  "readmeFilename": "README.md",
-  "gitHead": "c1d7c70f70379e4365892c62bd1821fbd0a18482",
-  "_id": "biojs-vis-genbank@0.1.0",
-  "_shasum": "cc63e9eaa70fc8eac3ba7fa0f224b4c479972040",
-  "_from": "biojs-vis-genbank@"
+  ]
 }
