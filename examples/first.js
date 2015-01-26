@@ -1,2 +1,2 @@
-var app = require("biojs-vis-genebank");
+var app = require("biojs-vis-genbank");
 var instance = app({el: yourDiv});
