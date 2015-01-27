@@ -1,7 +1,7 @@
 {
   "name": "biojs-vis-genbank",
   "description": "genbank parser for genbank files",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "homepage": "https://github.com/Carlinho89/PP2_DiDomenico_Gigantiello_Krishnamurthy",
   "contributors": [
     {
