@@ -3,12 +3,12 @@
 2 info using npm@1.4.28
 3 info using node@v0.10.35
 4 verbose run-script [ 'prepublish' ]
-5 info prepublish biojs-vis-genbank@0.1.0
+5 info prepublish biojs-vis-genbank@0.1.4
 6 verbose unsafe-perm in lifecycle true
-7 info biojs-vis-genbank@0.1.0 Failed to exec prepublish script
-8 error biojs-vis-genbank@0.1.0 prepublish: `gulp build`
-8 error Exit status 127
-9 error Failed at the biojs-vis-genbank@0.1.0 prepublish script.
+7 info biojs-vis-genbank@0.1.4 Failed to exec prepublish script
+8 error biojs-vis-genbank@0.1.4 prepublish: `gulp build`
+8 error Exit status 8
+9 error Failed at the biojs-vis-genbank@0.1.4 prepublish script.
 9 error This is most likely a problem with the biojs-vis-genbank package,
 9 error not with npm itself.
 9 error Tell the author that this fails on your system:
@@ -18,7 +18,7 @@
 9 error There is likely additional logging output above.
 10 error System Darwin 14.0.0
 11 error command "node" "/usr/local/bin/npm" "run" "prepublish"
-12 error cwd /Users/Cuzzo89/Desktop/emergency/node_modules/biojs-vis-genbank
+12 error cwd /Users/Cuzzo89/working-biojs
 13 error node -v v0.10.35
 14 error npm -v 1.4.28
 15 error code ELIFECYCLE
