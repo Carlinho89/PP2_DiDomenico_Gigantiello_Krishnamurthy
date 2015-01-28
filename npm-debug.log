@@ -2,24 +2,19 @@
 1 verbose cli [ 'node', '/usr/local/bin/npm', 'run', 'prepublish' ]
 2 info using npm@1.4.28
 3 info using node@v0.10.35
-4 verbose run-script [ 'prepublish' ]
-5 info prepublish biojs-vis-genbank@0.1.4
-6 verbose unsafe-perm in lifecycle true
-7 info biojs-vis-genbank@0.1.4 Failed to exec prepublish script
-8 error biojs-vis-genbank@0.1.4 prepublish: `gulp build`
-8 error Exit status 8
-9 error Failed at the biojs-vis-genbank@0.1.4 prepublish script.
-9 error This is most likely a problem with the biojs-vis-genbank package,
-9 error not with npm itself.
-9 error Tell the author that this fails on your system:
-9 error     gulp build
-9 error You can get their info via:
-9 error     npm owner ls biojs-vis-genbank
-9 error There is likely additional logging output above.
-10 error System Darwin 14.0.0
-11 error command "node" "/usr/local/bin/npm" "run" "prepublish"
-12 error cwd /Users/Cuzzo89/working-biojs
-13 error node -v v0.10.35
-14 error npm -v 1.4.28
-15 error code ELIFECYCLE
-16 verbose exit [ 1, true ]
+4 error Failed to parse json
+4 error Unexpected string
+5 error File: /Users/Cuzzo89/working-biojs/package.json
+6 error Failed to parse package.json data.
+6 error package.json must be actual JSON, not just JavaScript.
+6 error
+6 error This is not a bug in npm.
+6 error Tell the package author to fix their package.json file. JSON.parse
+7 error System Darwin 14.0.0
+8 error command "node" "/usr/local/bin/npm" "run" "prepublish"
+9 error cwd /Users/Cuzzo89/working-biojs
+10 error node -v v0.10.35
+11 error npm -v 1.4.28
+12 error file /Users/Cuzzo89/working-biojs/package.json
+13 error code EJSONPARSE
+14 verbose exit [ 1, true ]

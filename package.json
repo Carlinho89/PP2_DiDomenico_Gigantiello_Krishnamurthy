@@ -1,7 +1,7 @@
 {
   "name": "biojs-vis-genbank",
   "description": "genbank parser for genbank files",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "homepage": "https://github.com/Carlinho89/PP2_DiDomenico_Gigantiello_Krishnamurthy",
   "contributors": [
     {
@@ -17,22 +17,20 @@
       "email": "enrico.gigantiello@gmail.com"
     },
     {
-      "name": "Tatyana Goldberg"
-    },
-    {
-      "name": "Juan Miguel Cejuela"
-    },
-    {
-      "name": "Sebastian Wilzbach"
-    },
-    {
-      "name": "David Dao"
-    },
-    {
-      "name": "Dr. Khalil El Mazouari"
-    },
-    {
-      "name": "Prof. Burkhard Rost"
+      "name": "Tatyana Goldberg",
+      "url": "https://rostlab.org/~goldberg/"
+    }, {
+      "name": "Juan Miguel Cejuela",
+      "url": "https://www.tagtog.net/"
+    }, {
+      "name": "Sebastian Wilzbach",
+      "url": "http://seb.wilzba.ch"
+    }, {
+      "name": "David Dao",
+      "url": "http://daviddao.de"
+    }, {
+      "name": "Prof. Burkhard Rost",
+      "url": "https://en.wikipedia.org/wiki/Burkhard_Rost"
     }
     
   ],
